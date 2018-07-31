@@ -1,0 +1,10 @@
+version: '2'
+services:
+  app:
+    build: .
+    container_name: lb-partners-PRODUCTION
+    environment:
+          NODE_ENV: production
+    command: npm run build-prod
+    ports:
+      - '8100:8100'

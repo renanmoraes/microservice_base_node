@@ -1,0 +1,125 @@
+# REST API with ExpressJS/NodeJS and Docker integration.
+
+This is a base API using ExpressJs and NodeJs with docker deploy or PM2, easily and quickly.
+
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg?style=flat-square)](LICENSE)
+[![node](https://img.shields.io/badge/NodeJS-9.x-green.svg?style=flat-square)]()
+[![es6](https://img.shields.io/badge/ES6-Babel-blue.svg?style=flat-square)](.babelrc)
+[![docker](https://img.shields.io/badge/Containers-Docker-blue.svg?style=flat-square)](Dockerfile)
+[![pm2](https://img.shields.io/badge/Local-PM2-lightgray.svg?style=flat-square)](pm2-deploy.yml)
+[![sql](https://img.shields.io/badge/SQL-Sequelize-red.svg?style=flat-square)](src/core/Database.js#L78)
+[![mongo](https://img.shields.io/badge/MongoDB-Cluster-green.svg?style=flat-square)](src/core/Database.js#L66)
+[![ssl](https://img.shields.io/badge/SSL-HTTPS-green.svg?style=flat-square)](src/core/SSL.js)
+[![helmet](https://img.shields.io/badge/Security-Helmet-pink.svg?style=flat-square)](src/core/Security.js)
+
+### What's new in 2.0?
+
+- Sequelize and Mongoose paginate method
+- Support to MongoDB Cluster
+- Automatically connect to all databases
+- Enabled or disabled databases
+- Improved Docker or PM2 deploy
+- New examples
+- SSL independent
+- Unprocessable Entity response (422)
+- Fix bugs
+
+
+## Structure
+```
+.
+├── Dockerfile
+├── LICENSE
+├── README.md
+├── docker-compose.yml
+├── package.json
+├── pm2-deploy.yml
+└── src
+    ├── api
+    │   ├── artists
+    │   │   ├── _index.js
+    │   │   ├── _validates
+    │   │   │   ├── create.validate.js
+    │   │   │   └── update.validate.js
+    │   │   ├── create.js
+    │   │   ├── read.js
+    │   │   ├── readOne.js
+    │   │   └── update.js
+    │   └── musics
+    │       ├── _index.js
+    │       ├── _validates
+    │       │   ├── create.validate.js
+    │       │   └── update.validate.js
+    │       ├── create.js
+    │       ├── read.js
+    │       ├── readOne.js
+    │       └── update.js
+    ├── app.js
+    ├── config
+    │   ├── api.joi.conf.js
+    │   ├── env
+    │   │   ├── development.env.js
+    │   │   ├── production.env.js
+    │   │   └── test.env.js
+    │   └── sequelize.joi.conf.js
+    ├── core
+    │   ├── Cors.js
+    │   ├── Database.js
+    │   ├── Paginate.js
+    │   ├── RequestQuery.js
+    │   ├── Response.js
+    │   ├── Routers.js
+    │   ├── SSL.js
+    │   └── Security.js
+    ├── models
+    │   ├── mongodb
+    │   │   └── artists.js
+    │   ├── mysql
+    │   │   └── musics.js
+    │   └── postgres
+    │       ├── artists.js
+    │       └── musics.js
+    ├── services
+    │   ├── Example.service.js
+    │   └── Service.js
+    ├── storage
+    │   └── certificates
+    │       ├── ssl.crt
+    │       └── ssl.key
+    └── tests
+        └── api
+            └── example.test.js
+  ```
+  
+  ## Install
+  ```sh
+  # Clone the repo
+  git clone git@github.com:institutoprominas/microservices_base_api.git
+  cd microservices_base_api
+  
+  # Remove .git
+  rm -rf .git
+  
+  # Install packages
+  npm install
+  sudo npm install pm2 -g
+  
+  # Build
+  npm run build
+  
+  # Run (local)
+  npm run dev   # (Development mode)
+  npm run test  # (Run tests)
+  npm start     # (Production mode with pm2, build before)
+  npm stop      # (Stop Production)
+  npm restart   # (Restart the api)
+
+  # Deploy (Docker)
+  npm run start-docker  # (Pull image and deploy docker container)
+  npm run stop-docker   # (Stop deployed container)
+  docker-compose        # (Others deployment options)
+
+  # To install docker-compose
+  sudo apt install python python-pip
+  sudo pip install docker-compose
+  ```

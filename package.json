@@ -1,0 +1,51 @@
+{
+  "name": "lb_partiners",
+  "version": "1.0.0",
+  "description": "Base para API Rest com NodeJS, para microsserviços",
+  "main": "src/app.js",
+  "scripts": {
+    "build": "rm -rf dist && mkdir dist && babel ./src -d ./dist --copy-files",
+    "dev": "sudo docker-compose -f docker-compose.dev.yml up",
+    "build-dev": "nodemon --exec babel-node src/app.js",
+    "prod": "sudo docker-compose -f docker-compose.prod.yml up --build -d && sudo docker-compose -f docker-compose.prod.yml logs -f -t",
+    "build-prod": "npm run build && node dist/app.js",
+    "down-prod": "sudo docker-compose -f docker-compose.prod.yml down",
+    "beta": "sudo docker-compose -f docker-compose.beta.yml up --build -d && sudo docker-compose -f docker-compose.beta.yml logs -f -t",
+    "build-beta": "npm run build && node dist/app.js",
+    "down-beta": "sudo docker-compose -f docker-compose.beta.yml down"
+  },
+  "author": "Renan Moraes <renan.desenvolvimento@gmail.com>",
+  "license": "CC",
+  "devDependencies": {
+    "assert": "^1.4.1",
+    "babel-cli": "^6.24.1",
+    "babel-preset-env": "^1.7.0",
+    "babel-preset-minify": "0.2.0",
+    "chai": "^4.1.2",
+    "chai-http": "^3.0.0",
+    "eslint": "^4.0.0-rc.0",
+    "eslint-plugin-promise": "^3.7.0",
+    "mocha": "^3.4.2",
+    "nodemon": "^1.17.4"
+  },
+  "dependencies": {
+    "acl": "^0.4.11",
+    "body-parser": "^1.18.3",
+    "compression": "^1.7.0",
+    "express": "^4.15.3",
+    "helmet": "^3.8.1",
+    "http-status-codes": "^1.3.0",
+    "joi": "^10.5.2",
+    "joi-i18n": "^13.1.2",
+    "lodash": "^4.17.5",
+    "mongoose": "^4.11.0",
+    "mongoose-beautiful-unique-validation": "^7.1.1",
+    "morgan": "^1.9.0",
+    "mysql2": "^1.4.2",
+    "pg": "^6.1.0",
+    "pg-hstore": "^2.3.2",
+    "request": "^2.86.0",
+    "request-promise": "^4.2.1",
+    "sequelize": "^4.37.7"
+  }
+}

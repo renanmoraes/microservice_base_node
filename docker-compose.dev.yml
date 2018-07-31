@@ -1,0 +1,19 @@
+version: '2'
+services:
+  app:
+    build: .
+    container_name: lb-partners-DEVELOPMENT
+    environment:
+          NODE_ENV: development
+    command: npm run build-dev
+    depends_on:
+          - mongodb
+    ports:
+      - '8100:8100'
+    volumes:
+      - .:/home/LineBus/lb-api-data
+      - /home/LineBus/lb-api-data/node_modules
+  mongodb:
+    image: mongo:latest
+    volumes:
+      - /data/db:/data/db

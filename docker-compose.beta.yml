@@ -1,0 +1,10 @@
+version: '2'
+services:
+  app:
+    build: .
+    container_name: lb-partners-BETA
+    environment:
+          NODE_ENV: beta
+    command: npm run build-beta
+    ports:
+      - '8100:8100'
